@@ -8,13 +8,14 @@
     tools:context=".presentation.cocktail_list.CocktailListFragment">
 
     <ProgressBar
-        android:id="@+id/rb_load_cocktail_list"
+        android:id="@+id/pb_load_cocktail_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
 
     <TextView
+        android:id="@+id/tv_error_getting_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_standard"
@@ -28,7 +29,7 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_cocktail_list"
+        android:id="@+id/rv_cocktail_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
