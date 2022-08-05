@@ -4,22 +4,30 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.listofcocktail.data.model.DrinkList
 import com.example.listofcocktail.data.repository.CocktailRepositoryImpl
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import retrofit2.Response
+import java.lang.Exception
 
 class CocktailListViewModel: ViewModel() {
 
     private val repositoryImpl = CocktailRepositoryImpl()
 
-    private val _drinkList: MutableLiveData<Response<DrinkList>> = MutableLiveData()
-    val drinkList: LiveData<Response<DrinkList>>
+    private val _drinkList: MutableLiveData<CocktailListState> = MutableLiveData()
+    val drinkList: LiveData<CocktailListState>
         get() = _drinkList
 
-    fun getDrinkList() {
+    init {
+        _drinkList.value = LoadingState
+    }
+
+    fun setCocktailList() {
         viewModelScope.launch {
-            _drinkList.value = repositoryImpl.getDrinkList()
+            _drinkList.value = try {
+                ReadyState(repositoryImpl.getCocktailList())
+            } catch (e: Exception) {
+                ErrorState
+            }
         }
     }
 }

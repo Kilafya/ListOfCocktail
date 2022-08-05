@@ -30,15 +30,37 @@ class CocktailListFragment : Fragment() {
     ): View {
         _binding = FragmentCocktailListBinding
             .inflate(layoutInflater, container, false)
-        binding.rcCocktailList.adapter = adapter
-        viewModel.drinkList.observe(viewLifecycleOwner) { list ->
-            list.body()?.let { adapter.setCocktailsList(it.drinks) }
-        }
-        viewModel.getDrinkList()
+        binding.rvCocktailList.adapter = adapter
+        observeViewModel()
+        viewModel.setCocktailList()
         return binding.root
     }
 
-
+    private fun observeViewModel() {
+        viewModel.drinkList.observe(viewLifecycleOwner) {
+            with(binding) {
+                when (it) {
+                    is LoadingState -> {
+                        pbLoadCocktailList.visibility = View.VISIBLE
+                        tvErrorGettingList.visibility = View.GONE
+                        rvCocktailList.visibility = View.GONE
+                    }
+                    is ErrorState -> {
+                        pbLoadCocktailList.visibility = View.GONE
+                        tvErrorGettingList.visibility = View.VISIBLE
+                        rvCocktailList.visibility = View.GONE
+                        viewModel.setCocktailList()
+                    }
+                    is ReadyState -> {
+                        pbLoadCocktailList.visibility = View.GONE
+                        tvErrorGettingList.visibility = View.GONE
+                        rvCocktailList.visibility = View.VISIBLE
+                        adapter.setCocktailsList(it.cocktailList)
+                    }
+                }
+            }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
