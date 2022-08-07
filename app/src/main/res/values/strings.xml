@@ -2,4 +2,9 @@
     <string name="app_name">TestCocktail</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="connection_problem">Connection problem. Make sure that the internet is turned on the device</string>
+    <string name="hint_name">name</string>
+    <string name="hint_category">category</string>
+    <string name="hint_glass">glass</string>
+    <string name="hint_instruction">instruction</string>
+    <string name="hint_ingredients">ingredients</string>
 </resources>

@@ -4,6 +4,8 @@
     <dimen name="margin_standard">12dp</dimen>
     <dimen name="rounding_standard">16dp</dimen>
 
+    <dimen name="padding_standard">12dp</dimen>
+
     <dimen name="large_font">20sp</dimen>
     <dimen name="standard_font">16sp</dimen>
 

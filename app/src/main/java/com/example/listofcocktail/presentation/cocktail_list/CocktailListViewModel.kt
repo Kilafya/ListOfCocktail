@@ -4,27 +4,30 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.listofcocktail.data.repository.CocktailRepositoryImpl
+import com.example.listofcocktail.domain.model.CocktailFullInfo
+import com.example.listofcocktail.domain.use_cases.GetCocktailByIdUseCase
+import com.example.listofcocktail.domain.use_cases.GetCocktailListUseCase
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
-class CocktailListViewModel: ViewModel() {
+class CocktailListViewModel @Inject constructor(
+    private val getCocktailListUseCase: GetCocktailListUseCase,
+): ViewModel() {
 
-    private val repositoryImpl = CocktailRepositoryImpl()
-
-    private val _drinkList: MutableLiveData<CocktailListState> = MutableLiveData()
-    val drinkList: LiveData<CocktailListState>
-        get() = _drinkList
+    private val _state: MutableLiveData<CocktailListState> = MutableLiveData()
+    val state: LiveData<CocktailListState>
+        get() = _state
 
     init {
-        _drinkList.value = LoadingState
+        _state.value = LoadingState
     }
 
     fun setCocktailList() {
         viewModelScope.launch {
-            _drinkList.value = try {
-                ReadyState(repositoryImpl.getCocktailList())
+            _state.value = try {
+                ReadyState(getCocktailListUseCase())
             } catch (e: Exception) {
                 ErrorState
             }

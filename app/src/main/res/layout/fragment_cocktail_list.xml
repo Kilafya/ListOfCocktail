@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/padding_standard"
     android:background="@color/teal_700"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.cocktail_list.CocktailListFragment">
@@ -28,10 +29,25 @@
         android:textStyle="bold"
         />
 
+<!--    <LinearLayout-->
+<!--        android:id="@+id/ll_search_bar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal" >-->
+<!--        -->
+<!--        <ImageButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:src="dr"-->
+<!--            />-->
+<!--        -->
+<!--    </LinearLayout>-->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cocktail_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_cocktail_layout"

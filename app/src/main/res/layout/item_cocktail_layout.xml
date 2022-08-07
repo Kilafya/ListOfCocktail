@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:layout_marginVertical="@dimen/margin_small"
     android:backgroundTint="@color/teal_200"
-    app:cardCornerRadius="@dimen/rounding_standard" >
+    app:cardCornerRadius="@dimen/rounding_standard">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_standard"
             android:adjustViewBounds="true"
-            tools:src="@drawable/coctail_image" />
+            tools:src="@drawable/ic_cocktail_default" />
 
         <TextView
             android:id="@+id/tv_item_name"

@@ -6,7 +6,7 @@ import com.example.listofcocktail.domain.model.CocktailItem
 interface CocktailRepository {
     suspend fun getCocktailList(): List<CocktailItem>
 
-    suspend fun getCocktailByName(name: String): CocktailFullInfo
+    suspend fun getCocktailListByName(name: String): List<CocktailItem>
 
     suspend fun getCocktailById(id: String): CocktailFullInfo
 }

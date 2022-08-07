@@ -3,12 +3,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/teal_700"
     tools:context=".presentation.cocktail_item.CocktailItemFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ProgressBar
+        android:id="@+id/pb_load_cocktail_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        />
+
     <TextView
+        android:id="@+id/tv_error_getting_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_standard"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/connection_problem"
+        android:textColor="@color/rad"
+        android:textSize="@dimen/standard_font"
+        android:textStyle="bold"
+        />
+
+    <ScrollView
+        android:id="@+id/sv_cocktail_info"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/iv_cocktail_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_standard"
+                android:adjustViewBounds="true"
+                tools:src="@drawable/cocktail_image" />
+
+            <TextView
+                style="@style/hint_text"
+                android:text="@string/hint_name" />
+
+            <TextView
+                android:id="@+id/tv_cocktail_name"
+                style="@style/norm_text"
+                tools:text="Margarita" />
+
+            <TextView
+                style="@style/hint_text"
+                android:text="@string/hint_category" />
+
+            <TextView
+                android:id="@+id/tv_cocktail_category"
+                style="@style/norm_text"
+                tools:text="Cocktail Alcoholic" />
+
+            <TextView
+                style="@style/hint_text"
+                android:text="@string/hint_glass" />
+
+            <TextView
+                android:id="@+id/tv_cocktail_glass"
+                style="@style/norm_text"
+                tools:text="White wine glass" />
+
+            <TextView
+                style="@style/hint_text"
+                android:text="@string/hint_instruction" />
+
+            <TextView
+                android:id="@+id/tv_cocktail_instruction"
+                style="@style/norm_text"
+                tools:text="Blend with ice. Serve in a wine glass. Garnish with carrot." />
+
+            <TextView
+                style="@style/hint_text"
+                android:text="@string/hint_ingredients" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_ingredient_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_standard"
+                android:layout_marginBottom="@dimen/margin_standard"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_ingredient" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>
